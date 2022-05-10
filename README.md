@@ -1,24 +1,18 @@
 # README
+This is a ruby on rails sample application to demonstrate how to auto-instrument a rails application using opentelemetry.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
+* Ruby version: 3.1.2
 
 * System dependencies
 
-* Configuration
+    ```
+    gem 'opentelemetry-sdk'
+    gem 'opentelemetry-exporter-otlp'
+    gem 'opentelemetry-instrumentation-all'
+    ```
 
-* Database creation
+* Start the application: `OTEL_EXPORTER=otlp OTEL_SERVICE_NAME=sampleRailsApp OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318 OTEL_RESOURCE_ATTRIBUTES=application=sparkapp rails server rails server`
 
-* Database initialization
+    This runs the rails application at port 3000. Try accessing app at http://localhost:3000/
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This sample app was inspired by [this](https://www.digitalocean.com/community/tutorials/how-to-build-a-ruby-on-rails-application) article on digital ocean.
