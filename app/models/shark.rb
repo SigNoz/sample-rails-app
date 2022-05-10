@@ -1,0 +1,2 @@
+class Shark < ApplicationRecord
+end

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @shark %>
+
+<div>
+  <%= link_to "Edit this shark", edit_shark_path(@shark) %> |
+  <%= link_to "Back to sharks", sharks_path %>
+
+  <%= button_to "Destroy this shark", @shark, method: :delete %>
+</div>
