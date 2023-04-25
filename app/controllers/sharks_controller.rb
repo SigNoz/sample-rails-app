@@ -1,3 +1,5 @@
+require "opentelemetry/sdk"
+
 class SharksController < ApplicationController
   before_action :set_shark, only: %i[ show edit update destroy ]
 
@@ -17,6 +19,13 @@ class SharksController < ApplicationController
 
   # GET /sharks/1/edit
   def edit
+    # generate error for 50% of calls to test error handling in OpenTelemetry
+    if rand(2)%2 == 0
+      current_span = OpenTelemetry::Trace.current_span
+      current_span.status = OpenTelemetry::Trace::Status.error("custom error message here!")
+      current_span.record_exception(StandardError.new "This is a test exception")
+      raise StandardError.new "This is a test exception"
+    end
   end
 
   # POST /sharks or /sharks.json
